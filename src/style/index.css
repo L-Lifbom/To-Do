@@ -1,0 +1,58 @@
+:root {
+    --clr-background-1: #0f0f10;
+    --clr-background-2: #1c1c1e;
+    --text-light: #FFFFF0;
+    --text-dark: #1c1c1e;
+    --radius: 0.6rem;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+}
+
+body {
+    background-color: var(--clr-background-2);
+    color: var(--text-light);
+    display: grid;
+    grid-template: 
+    "header" 30vh
+    "main" auto;
+}
+
+.input-container {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.input-list {
+    width: 30vw;
+    height: 20vh;
+    border-radius: var(--radius);
+    background-color: var(--clr-background-1);
+}
+
+.add-input {
+    
+}
+
+.add-btn {
+
+}
+
+.todo-container {
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+}
+
+.todo-list {
+    width: 40vw;
+    height: 60vh;
+    border-radius: var(--radius);
+    background-color: var(--clr-background-1);
+}
