@@ -3,6 +3,8 @@
     --clr-background-2: #1c1c1e;
     --text-light: #FFFFF0;
     --text-dark: #1c1c1e;
+    --clr-accent-1: #008264;
+    --clr-accent-2: #00aa8c;
     --radius: 0.6rem;
 }
 
@@ -30,29 +32,66 @@ body {
 }
 
 .input-list {
-    width: 30vw;
-    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 650px;
+    height: 100px;
     border-radius: var(--radius);
     background-color: var(--clr-background-1);
 }
 
-.add-input {
-    
+#add-input {
+    height: 50px;
+    width: 350px;
+    outline: none;
+    border-radius: var(--radius);
+    border: none;
+    font-size: 1.5rem;
+    padding: 0 5px 0 5px;
+    text-transform: none;
+    color: var(--text-dark);
+    background-color: var(--clr-accent-1);
 }
 
-.add-btn {
-
+#add-btn {
+    position: absolute;
+    margin-left: 500px;
+    font-size: 3rem;
+    cursor: pointer;
+    color: var(--clr-accent-1);
 }
 
 .todo-container {
     grid-area: main;
     display: flex;
-    justify-content: center;
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+    border-radius: var(--radius);
+    background-color: var(--clr-background-1);
+    width: 900px;
+    height: 600px;
 }
 
 .todo-list {
-    width: 40vw;
-    height: 60vh;
+    height: 89%;
+}
+
+#delete-all-btn {
+    height: 50px;
+    width: 200px;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
     border-radius: var(--radius);
-    background-color: var(--clr-background-1);
+    background-color: var(--clr-accent-1);
+    color: var(--text-dark);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#delete-all-btn:active {
+    background-color: var(--clr-accent-2);
 }
