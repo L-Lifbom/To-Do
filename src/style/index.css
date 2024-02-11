@@ -3,8 +3,8 @@
     --clr-background-2: #1c1c1e;
     --text-light: #FFFFF0;
     --text-dark: #1c1c1e;
-    --clr-accent-1: #008264;
-    --clr-accent-2: #00aa8c;
+    --clr-accent-1: #FFFFF0;
+    --clr-accent-2: #ffffffe5;
     --radius: 0.6rem;
 }
 
@@ -24,6 +24,18 @@ body {
     "main" auto;
 }
 
+i {
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    display: none;
+}
+
 .input-container {
     grid-area: header;
     display: flex;
@@ -32,6 +44,7 @@ body {
 }
 
 .input-list {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -42,9 +55,9 @@ body {
     background-color: var(--clr-background-1);
 }
 
-#add-input {
+#input-add {
     height: 50px;
-    width: 350px;
+    width: 450px;
     outline: none;
     border-radius: var(--radius);
     border: none;
@@ -55,11 +68,10 @@ body {
     background-color: var(--clr-accent-1);
 }
 
-#add-btn {
+#btn-add {
     position: absolute;
-    margin-left: 500px;
+    right: 20px;
     font-size: 3rem;
-    cursor: pointer;
     color: var(--clr-accent-1);
 }
 
@@ -69,6 +81,7 @@ body {
     margin: auto;
     align-items: center;
     flex-direction: column;
+    row-gap: 20px;
     border-radius: var(--radius);
     background-color: var(--clr-background-1);
     width: 900px;
@@ -76,12 +89,53 @@ body {
 }
 
 .todo-list {
-    height: 89%;
+    margin-top: 20px;
+    height: 82%;
+    overflow: scroll;
+}
+
+.todo-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 75px;
+    width: 800px;
+    background-color: var(--clr-accent-1);
+    color: var(--text-dark);
+    margin: 20px 10px 0 10px;
+    font-size: 2.1rem;
+    border-radius: var(--radius);
+}
+
+#check-toggle {
+    position: absolute;
+    left: 20px;
+    
+}
+
+#check-text {
+    position: absolute;
+    left: 75px;
+    width: 75%;
+    font-size: inherit;
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
+
+#check-edit {
+    position: absolute;
+    right: 70px;
+}
+
+#check-remove {
+    position: absolute;
+    right: 20px;
 }
 
 #delete-all-btn {
-    height: 50px;
-    width: 200px;
+    height: 35px;
+    width: 150px;
     font-size: 1.2rem;
     border: none;
     outline: none;

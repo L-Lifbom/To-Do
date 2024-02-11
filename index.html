@@ -12,16 +12,23 @@
 <body>
   <section class="input-container">
     <div class="input-list">
-      <input type="text" placeholder="Input Task..." id="add-input">
-      <i class="fa-solid fa-circle-plus" id="add-btn"></i>
+      <input type="text" placeholder="Input Task..." id="input-add">
+      <i class="fa-solid fa-circle-plus" id="btn-add"></i>
     </div>
   </section>
 
   <section class="todo-container">
-    <div class="todo-list"></div>
-    <div class="todo-footer">
-      <button id="delete-all-btn">Delete all tasks</button>
-    </div>
+    <section class="todo-list">
+
+      <div class="todo-box" id="">
+        <i class="fa-regular fa-square" id="check-toggle"></i>
+        <input type="text" id="check-text" readonly>
+        <i class="fa-solid fa-pen-to-square" id="check-edit"></i>
+        <i class="fa-regular fa-circle-xmark" id="check-remove"></i>
+      </div>
+
+    </section>
+    <button id="delete-all-btn">clear tasks</button>
   </section>
 
   <script type="module" src="dist/main.js"></script>
