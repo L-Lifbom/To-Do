@@ -56,23 +56,23 @@ i {
     background-color: var(--clr-background-1);
 }
 
-#input-add {
+.input-add {
     height: 50px;
     width: 450px;
     outline: none;
     border-radius: var(--radius-2);
-    border: 2px solid black;
-    font-size: 1.5rem;
+    border: 3px solid black;
+    font-size: 1rem;
     padding: 0 10px 0 10px;
     text-transform: none;
     color: var(--text-dark);
     background-color: var(--clr-accent-1);
 }
 
-#btn-add {
+.btn-add {
     position: absolute;
-    right: 20px;
-    font-size: 3rem;
+    right: 35px;
+    font-size: 2rem;
     color: var(--clr-accent-1);
 }
 
@@ -106,38 +106,39 @@ i {
     margin: 20px 10px 0 10px;
     font-size: 2.1rem;
     border-radius: var(--radius-2);
+    overflow-x: scroll;
 }
 
-#check-toggle {
+.todo-toggle {
     position: absolute;
     left: 20px;
-    
 }
 
-#check-text {
+.todo-input {
     position: absolute;
-    left: 75px;
-    width: 75%;
-    font-size: inherit;
+    left: 100px;
+    width: 65%;
+    font-size: 2rem;
     outline: none;
     background-color: transparent;
     border: none;
+    text-transform: none;
 }
 
-#check-edit {
+.todo-edit {
     position: absolute;
     right: 70px;
 }
 
-#check-remove {
+.todo-remove {
     position: absolute;
     right: 20px;
 }
 
-#delete-all-btn {
+.delete-all-btn {
     height: 35px;
-    width: 150px;
-    font-size: 1.2rem;
+    width: 100px;
+    font-size: 1rem;
     border: none;
     outline: none;
     border-radius: var(--radius-2);
@@ -147,6 +148,23 @@ i {
     font-weight: bold;
 }
 
-#delete-all-btn:active {
+.delete-all-btn:active {
     background-color: var(--clr-accent-2);
 }
+
+@keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(5px);
+    }
+}
+  
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+  
