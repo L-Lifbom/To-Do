@@ -21,7 +21,7 @@ body {
     color: var(--text-light);
     display: grid;
     grid-template: 
-    "header" 30vh
+    "header" 25vh
     "main" auto;
 }
 
@@ -123,9 +123,14 @@ i {
     background-color: transparent;
     border: none;
     text-transform: none;
-    height: 90%;
+    height: 80%;
     border-radius: var(--radius-2);
     padding: 0 10px 0 10px;
+}
+
+.todo-priority {
+    position: absolute;
+    right: 120px;
 }
 
 .todo-edit {

@@ -10,6 +10,7 @@ function createTodo() {
             id: uuidv4(),
             title: inputAdd.value,
             toggle: false,
+            priority: "Low",
         };
         savedTodo.push(newTodo);
         localStorage.setItem('savedTodo', JSON.stringify(savedTodo));
@@ -37,24 +38,32 @@ function displayTodo() {
     }
     else {
         const displayTodos = [...savedTodo].sort((a, b) => {
+            // Sort by priority then by toggle
             if (a.toggle !== b.toggle) {
-                return Number(a.toggle) - Number(b.toggle);
+                return a.toggle ? 1 : -1; // Toggled tasks (true) go to the bottom
             }
-            return savedTodo.indexOf(a) - savedTodo.indexOf(b);
+            // For non-toggled tasks, sort by priority
+            if (!a.toggle && !b.toggle) {
+                const priorityOrder = { "High": 3, "Medium": 2, "Low": 1 };
+                return priorityOrder[b.priority] - priorityOrder[a.priority];
+            }
+            return 0; // For toggled tasks or if both have the same toggle status and priority
         });
         todoList.innerHTML = '';
         displayTodos.forEach((todo) => {
             const textDecoration = todo.toggle ? 'text-decoration: line-through;' : '';
             const backgroundColor = todo.toggle ? 'background-color: grey;' : '';
             const checkbox = todo.toggle
-                ? ` class="fa-solid fa-square-check todo-toggle" id="toggle-${todo.id}"`
-                : ` class="fa-regular fa-square todo-toggle" id="toggle-${todo.id}"`;
+                ? ` class="fa-solid fa-square-check todo-toggle"`
+                : ` class="fa-regular fa-square todo-toggle" "`;
+            const priorityColor = todo.toggle === true ? "var(--text-dark)" : todo.priority === "High" ? "#cc0000" : todo.priority === "Medium" ? "#CCCC00" : "#00CC00";
             todoList.innerHTML +=
                 `<div class="todo-box" id="${todo.id}" style="${backgroundColor}">
-                <i ${checkbox}></i>
+                <i ${checkbox} id="toggle-${todo.id} title="Toggle"></i>
                 <input type="text" class="todo-input" value="${todo.title}" readonly style="${textDecoration}">
-                <i class="fa-solid fa-pen-to-square todo-edit" id="edit-${todo.id}"></i>
-                <i class="fa-regular fa-circle-xmark todo-remove" id="remove-${todo.id}"></i>
+                <i class="fa-solid fa-lightbulb todo-priority" title="${todo.priority}" style="color: ${priorityColor};"></i>
+                <i class="fa-solid fa-pen-to-square todo-edit" id="edit-${todo.id}" title="Edit"></i>
+                <i class="fa-regular fa-circle-xmark todo-remove" id="remove-${todo.id}" title="Remove"></i>
             </div>`;
         });
         inputAdd.value = '';
@@ -72,6 +81,20 @@ function toggleTodo(target) {
             localStorage.setItem('savedTodo', JSON.stringify(savedTodo));
             // Re-display todos to reflect changes
             displayTodo();
+        }
+    }
+}
+function priorityTodo(target) {
+    var _a, _b;
+    const idStr = (_b = (_a = target.closest('div')) === null || _a === void 0 ? void 0 : _a.getAttribute('id')) !== null && _b !== void 0 ? _b : '';
+    if (idStr) {
+        const index = savedTodo.findIndex(item => item.id === idStr);
+        if (index !== -1) {
+            const todo = savedTodo[index];
+            // Cycle through priorities
+            todo.priority = todo.priority === "Low" ? "Medium" : todo.priority === "Medium" ? "High" : "Low";
+            localStorage.setItem('savedTodo', JSON.stringify(savedTodo));
+            displayTodo(); // Refresh display
         }
     }
 }
@@ -135,6 +158,9 @@ function listClick(event) {
     const target = event.target;
     if (target.classList.contains('todo-toggle')) {
         toggleTodo(target);
+    }
+    else if (target.classList.contains('todo-priority')) {
+        priorityTodo(target);
     }
     else if (target.classList.contains('todo-edit')) {
         editTodo(target);
