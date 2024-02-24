@@ -1,10 +1,8 @@
 # To-Do
 
-### Date
-- 2024-02-24
-
 ## Description
-This project contains a functions for adding, removing, editing To-Do notes while also utilizing the localstorage feature.
+- This project contains a functions for adding, removing, editing To-Do notes while also utilizing the localstorage feature and displaying the saved tasks in a user friendly interface.
+- 2024-02-24
 
 ## Visuals
 ![Screenshot of Dashboard](src/assets/Screenshot.png)
