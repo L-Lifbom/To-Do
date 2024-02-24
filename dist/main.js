@@ -76,11 +76,49 @@ function toggleTodo(target) {
     }
 }
 function editTodo(target) {
-    var _a, _b;
+    var _a, _b, _c;
     const idStr = (_b = (_a = target.closest('div')) === null || _a === void 0 ? void 0 : _a.getAttribute('id')) !== null && _b !== void 0 ? _b : '';
     if (idStr) {
         const index = savedTodo.findIndex(item => item.id === idStr);
-        console.log(index);
+        if (index !== -1) {
+            const input = (_c = target.closest('div')) === null || _c === void 0 ? void 0 : _c.querySelector('.todo-input');
+            if (input) {
+                input.readOnly = false;
+                input.focus();
+                // Set the value to itself to move the cursor to the end
+                const currentValue = input.value;
+                input.value = '';
+                input.value = currentValue;
+                input.style.backgroundColor = "var(--clr-background-1)";
+                input.style.color = "var(--text-light)";
+                const saveEdit = (input, index) => {
+                    if (!input.value) {
+                        savedTodo.splice(index, 1);
+                        localStorage.setItem('savedTodo', JSON.stringify(savedTodo));
+                        displayTodo();
+                    }
+                    else {
+                        savedTodo[index].title = input.value;
+                        localStorage.setItem('savedTodo', JSON.stringify(savedTodo));
+                        input.readOnly = true;
+                        displayTodo();
+                    }
+                };
+                // Update to handle event listeners more efficiently
+                const saveOnEnter = function (event) {
+                    if (event.key === 'Enter') {
+                        saveEdit(input, index);
+                        input.removeEventListener('keypress', saveOnEnter);
+                    }
+                };
+                const saveOnBlur = function () {
+                    saveEdit(input, index);
+                    input.removeEventListener('blur', saveOnBlur);
+                };
+                input.addEventListener('keypress', saveOnEnter);
+                input.addEventListener('blur', saveOnBlur);
+            }
+        }
     }
 }
 function removeTodo(target) {

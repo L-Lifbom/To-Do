@@ -96,7 +96,50 @@ function editTodo(target: HTMLElement):void {
     const idStr = target.closest('div')?.getAttribute('id')?? '';
     if (idStr) {
         const index = savedTodo.findIndex(item => item.id === idStr);
-        console.log(index)
+        if (index !== -1) {
+            const input = target.closest('div')?.querySelector('.todo-input') as HTMLInputElement | null;
+            if (input) {
+                input.readOnly = false;
+                input.focus();
+
+                // Set the value to itself to move the cursor to the end
+                const currentValue = input.value;
+                input.value = '';
+                input.value = currentValue;
+
+                input.style.backgroundColor = "var(--clr-background-1)"
+                input.style.color = "var(--text-light)"
+
+                const saveEdit = (input: HTMLInputElement, index: number) => {
+                    if (!input.value) {
+                        savedTodo.splice(index, 1);
+                        localStorage.setItem('savedTodo', JSON.stringify(savedTodo));
+                        displayTodo()
+                    } else {
+                        savedTodo[index].title = input.value;
+                        localStorage.setItem('savedTodo', JSON.stringify(savedTodo));
+                        input.readOnly = true;
+                        displayTodo();
+                    }
+                }
+                
+                // Update to handle event listeners more efficiently
+                const saveOnEnter = function(event: KeyboardEvent) {
+                    if (event.key === 'Enter') {
+                        saveEdit(input, index);
+                        input.removeEventListener('keypress', saveOnEnter);
+                    }
+                };
+
+                const saveOnBlur = function() {
+                    saveEdit(input, index);
+                    input.removeEventListener('blur', saveOnBlur);
+                };
+
+                input.addEventListener('keypress', saveOnEnter);
+                input.addEventListener('blur', saveOnBlur);
+            }
+        }
         
     }
 }

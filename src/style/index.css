@@ -123,6 +123,9 @@ i {
     background-color: transparent;
     border: none;
     text-transform: none;
+    height: 90%;
+    border-radius: var(--radius-2);
+    padding: 0 10px 0 10px;
 }
 
 .todo-edit {
