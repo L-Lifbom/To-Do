@@ -29,10 +29,11 @@ This project contains a functions for adding, removing, editing To-Do notes whil
 ## Usage
 This project includes the following components:
 - Add: Create a new to-do task by writing a to-do title in the top inputbar and pressing enter on your keyboard or pressing the "+" button.
-- Toggle: 
-- Edit:
-- Remove:
-- Clear all:
+- Toggle: This button toggles the project between finished/unfinished.
+- Priority: This button changes and sorts the priority of the task.
+- Edit: This button activated the edit function making it possible to change the title of the task.
+- Remove: This button removes the selected task.
+- Clear all: This button deletes all saved tasks.
 
 ## Reflections On Code Quality
 
