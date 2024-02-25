@@ -33,12 +33,5 @@ This project includes the following components:
 - Remove: This button removes the selected task.
 - Clear all: This button deletes all saved tasks.
 
-## Reflections On Code Quality
-
-### Strengths
-
-### Weaknesses
-
-### Conclusion
-
 ## Contact Information
+- Github: https://github.com/L-Lifbom
